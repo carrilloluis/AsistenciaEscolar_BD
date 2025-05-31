@@ -1,0 +1,54 @@
+@startuml AsistenciaEscolarPorAlumno
+	hide circle
+	skin rose
+	hide empty members
+	entity Alumno {
+		*id : INTEGER
+		documentoIdentidad : CHAR
+		nombres : VARCHAR
+		apellidosPaterno : VARCHAR
+		apellidosMaterno : VARCHAR
+		estado : BOOLEAN
+	}
+	entity GrupoAcadémico {
+		*id : INTEGER
+		gradoAcadémico : INTEGER
+		sección : CHAR
+		denominación : VARCHAR
+		estado : BOOLEAN
+	}
+	entity Matrícula {
+		*id : INTEGER
+		añoLectivo : INTEGER
+		idAlumno : INTEGER
+		idGrupoAcadémico : INTEGER
+		estado : BOOLEAN
+	}
+	entity ÁreaCurricular {
+		*id : INTEGER
+		denominación : VARCHAR
+		estado : BOOLEAN
+	}
+	entity ProgramaciónEscolar {
+		*id : INTEGER
+		idAsignatura : INTEGER
+		díaSemana : INTEGER
+		horaInicio : INTEGER
+		horaCierre : INTEGER
+		estado : BOOLEAN
+	}
+	entity AsistenciaEscolar {
+		*idMatrícula : INTEGER
+		*idProgramaciónEscolar : INTEGER
+		*fechaRegistro : CHAR
+		asistencia : BOOLEAN
+		puntualidad : BOOLEAN
+	}
+	Alumno ||-r-|| Matrícula  
+	Matrícula ||-d-|| GrupoAcadémico
+	AsistenciaEscolar }o-d-|| Matrícula
+	AsistenciaEscolar ||-r-|| ProgramaciónEscolar
+	ProgramaciónEscolar}|-d-|| ÁreaCurricular
+@enduml
+
+
